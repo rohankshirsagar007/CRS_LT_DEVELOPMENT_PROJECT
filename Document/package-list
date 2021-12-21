@@ -1,0 +1,8 @@
+com.lt.crs.app
+com.lt.crs.bean
+com.lt.crs.business
+com.lt.crs.constants
+com.lt.crs.dao
+com.lt.crs.dto
+com.lt.crs.exceptions
+com.lt.crs.utilsDB
