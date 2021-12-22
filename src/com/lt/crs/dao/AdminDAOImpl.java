@@ -4,8 +4,13 @@ package com.lt.crs.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
 import java.util.Scanner;
 
+import com.lt.crs.bean.Course;
+import com.lt.crs.bean.Student;
+import com.lt.crs.bean.StudentGrade;
+import com.lt.crs.dto.StudentCourseDetails;
 import com.lt.crs.exceptions.CourseDuplicationException;
 import com.lt.crs.exceptions.CourseMapFoundException;
 import com.lt.crs.exceptions.NoCourseRegisterException;
@@ -18,7 +23,7 @@ import com.lt.crs.utilsDB.DBUtils;
 public class AdminDAOImpl implements AdminDAOInterface{
 	
 	Connection con=null;
-	
+	LinkedList<StudentCourseDetails> list3=new LinkedList<StudentCourseDetails>();	
 
 static Scanner sc=new Scanner(System.in);
 	
@@ -412,17 +417,39 @@ static Scanner sc=new Scanner(System.in);
 			ps=con.prepareStatement("  select c.course_id,c.course_name,s.student_name,sg.mark,sg.grade,s.student_id from student_grade sg inner join student s on sg.student_id=s.student_id inner join course c on sg.course_id=c.course_id group by 1,2,3,4,5,6 order by 6 ");
 
 			ResultSet rs=ps.executeQuery();
-			int counter=0;
+		
 			while(rs.next()) {
-				counter+=1;
-				System.out.println("******************* Displaying report card for Student ID:" +rs.getInt(6)+" and Student Name :"+rs.getString(3)+"******************  ");
-			System.out.println("\t\t course ID        "+rs.getInt(1)+"\t\t\t Course Name      "+rs.getString(2)+"\t\t\t\tMark     "+rs.getDouble(4)+"\t\tGrade       "+rs.getString(5));
+				Student s=new Student();
+				s.setStudentID(rs.getInt(6));
+				s.setStudentName(rs.getString(3));
+				Course c=new Course();
+				c.setCourseId(rs.getInt(1));
+				c.setCourseName(rs.getString(2));
+				StudentGrade sg=new StudentGrade();
+				sg.setMark(rs.getDouble(4));
+				sg.setGrade(rs.getString(5));
+				StudentCourseDetails scd=new StudentCourseDetails();
+				scd.setCourse(c);
+				scd.setStudent(s);
+				scd.setStudentGrade(sg);
+				list3.add(scd);
+//				System.out.println("******************* Displaying report card for Student ID:" +rs.getInt(6)+" and Student Name :"+rs.getString(3)+"******************  ");
+//			System.out.println("\t\t course ID        "+rs.getInt(1)+"\t\t\t Course Name      "+rs.getString(2)+"\t\t\t\tMark     "+rs.getDouble(4)+"\t\tGrade       "+rs.getString(5));
 			}
 			
-			if(counter==0) {
+			if(list3.isEmpty()) {
 				throw new NoReportCardException("There is no report card available");
 			}
-			
+			else {
+				
+				System.out.println("\tStudent ID \tStudent Name \tCourse ID \tCourse Name \t\tMark \tGrade");
+				list3.stream().forEach(s->System.out.println("\t\t"+s.getStudent().getStudentID()+"\t\t\t"+
+				s.getStudent().getStudentName()+"\t\t\t"+s.getCourse().getCourseId()+
+						"\t\t"+s.getCourse().getCourseName()+"\t\t\t\t\t1"+s.getStudentGrade().getMark()
+						+"\t\t\t"+s.getStudentGrade().getGrade()));	
+				
+			}
+		
 		
 			
 			

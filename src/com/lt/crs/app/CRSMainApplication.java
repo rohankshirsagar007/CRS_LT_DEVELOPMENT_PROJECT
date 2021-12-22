@@ -35,9 +35,9 @@ public class CRSMainApplication {
 		while(mainMenu) {
 		
 		System.out.println(" \n \t1. Login \n\t2. Student Registeration  \n\t3. Update Password \n\t4. Exit From APP  \n");
-		int menu=sc.nextInt();
+		String menu=sc.next();
 		switch(menu) {
-		case 1:
+		case "1":
 			user=new LoginUserOperation();
 			System.out.println("\n Enter User ID : ");
 			String userId=sc.next();
@@ -46,7 +46,7 @@ public class CRSMainApplication {
 			user.userLogin(userId, password);
 		break;
 			
-		case 2:
+		case "2":
 			str=new StudentRegistrationOperation();
 			student=new Student();
 			System.out.println("Enter Student Name");
@@ -69,7 +69,7 @@ public class CRSMainApplication {
 	
 			str.register(student);
 			break;
-		case 3:
+		case "3":
 			user=new LoginUserOperation();
 			System.out.println("Enter User ID : ");
 			String userID=sc.next();
@@ -81,7 +81,7 @@ public class CRSMainApplication {
 			
 			break;
 			
-		case 4:
+		case" 4":
 			System.out.println(" Are you sure you want to EXIT FROM CRS APP  Y or N: ");
 			char ask=sc.next().charAt(0);
 			if(ask=='y' || ask=='Y')

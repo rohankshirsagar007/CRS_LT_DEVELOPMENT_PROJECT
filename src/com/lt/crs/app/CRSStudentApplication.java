@@ -30,32 +30,32 @@ public class CRSStudentApplication {
 
 			System.out
 					.println("\n\t 1. Enroll Courses \n\t 2. Drop Course \n\t 3. View Enrolled Courses \n\t 4. View Report Card \n\t 5. Payment \n\t 6. Logout");
-			int studentSelect = sc.nextInt();
+			String studentSelect = sc.next();
 			switch (studentSelect) {
-			case 1:
+			case "1":
 				studSer = new StudentOperation();
 				studSer.addCourse(studentId);
 				break;
-			case 2:
+			case "2":
 				studSer = new StudentOperation();
 				studSer.dropCourse(studentId);
 				break;
-			case 3:
+			case "3":
 				studSer = new StudentOperation();
 				studSer.viewEnrolledCourse(studentId);
 				break;
-			case 4:
+			case "4":
 
 				studSer = new StudentOperation();
 				studSer.viewReportCard(studentId);
 				break;
-			case 5:
+			case "5":
 				po=new PaymentOperations();
 
 				po.makePayment(studentId);
 				break;
 
-			case 6:
+			case "6":
 				System.out
 						.println(" Are you sure you want to log out Y or N: ");
 				char ask = sc.next().charAt(0);

@@ -26,19 +26,19 @@ System.out.println("\n\n ********************* Professor  MENU *****************
 		while(profMenu) {
 		
 		System.out.println("\n\t1. View Enrolled Students \n\t2. Add Grades to the Student \n\t3. Logout");
-		int profSelect=sc.nextInt();
+		String profSelect=sc.next();
 		switch(profSelect) {
-		case 1:
+		case "1":
 			profser=new ProfessorOperation();
 			profser.viewStudent(profId);
 			
 			break;
-		case 2:
+		case "2":
 			profser=new ProfessorOperation();
 			profser.addGrade(profId);
 			break;
 		
-		case 3:
+		case "4":
 			System.out.println(" Are you sure you want to log out Y or N: ");
 			char ask=sc.next().charAt(0);
 			if(ask=='y' || ask=='Y') {profMenu=false;}

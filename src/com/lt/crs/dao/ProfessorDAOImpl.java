@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	Course cs = null;
 	Professor pf = null;
 	StudentCourseDetails scd = null;
-	//List<StudentCourseDetails> list = new ArrayList<StudentCourseDetails>();
+	LinkedList<StudentCourseDetails> list1=new LinkedList<StudentCourseDetails>();
 
 	public void viewStudent(int profId) throws Exception {
 		// TODO Auto-generated method stub
@@ -39,35 +40,30 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 					+ "on p.professor_id=cps.professor_id inner join student s on cps.student_id=s.student_id where cps.professor_id=? group by 1,2,3,4,5 order by 5,1");
 			ps.setInt(1, profId);
 			ResultSet rs = ps.executeQuery();
-			int counter = 0;
+			
 
 			while (rs.next()) {
-				counter += 1;
-				System.out.println("Student ID : 	"+rs.getInt(1)+"		Student Name:		"+rs.getString(2)+"		Course Name: 		"+rs.getString(3)+" 	Professor Name :	"+rs.getString(4));
-				/*st = new Student();
+				Student st=new Student();
 				st.setStudentID(rs.getInt(1));
 				st.setStudentName(rs.getString(2));
-
-				cs = new Course();
-				cs.setCourseId(rs.getInt(5));
-				cs.setCourseName(rs.getString(3));
-
-				pf = new Professor();
-				pf.setProfessorName(rs.getString(4));
-
-				scd = new StudentCourseDetails();
-				scd.setStudent(st);
-				scd.setCourse(cs);
-				scd.setProfessor(pf);
+				Course c=new Course();
+				c.setCourseId(rs.getInt(5));
+				c.setCourseName(rs.getString(3));
+				Professor p=new Professor();
+				p.setProfessorName(rs.getString(4));
 				
-				list.add(scd);*/
+				StudentCourseDetails scd=new StudentCourseDetails();
+				scd.setCourse(c);
+				scd.setProfessor(p);
+				scd.setStudent(st);
+				list1.add(scd);			}
 
+			if(list1.isEmpty()) {throw new NoStudentRegisteredException("No students registered for your course");}
+			else {
+				System.out.println("\t Student ID \t Course ID \t Student Name \t Course Name \t \t Professor Name");
+				list1.stream().forEach(s->System.out.println("\t\t"+s.getStudent().getStudentID()+"\t\t\t"+s.getCourse().getCourseId()+"\t\t\t"+s.getStudent().getStudentName()+"\t\t\t\t"+s.getCourse().getCourseName()+"\t\t\t\t"+s.getProfessor().getProfessorName())
+						);
 			}
-
-			if(counter == 0)
-			{
-				throw new NoStudentRegisteredException("No students registered for your course");
-				}
 		}
 			
            catch (Exception e) {
