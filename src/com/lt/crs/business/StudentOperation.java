@@ -3,6 +3,12 @@ package com.lt.crs.business;
 import com.lt.crs.dao.StudentDAOImpl;
 import com.lt.crs.dao.StudentDAOInterface;
 
+/**
+ * 
+ * @author Sai
+ * This Class is related all the Student Operation
+ *
+ */
 public class StudentOperation implements StudentInterface{
 	
 	StudentDAOInterface stud=null;

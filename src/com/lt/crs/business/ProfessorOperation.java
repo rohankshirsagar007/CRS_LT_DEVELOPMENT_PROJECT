@@ -2,7 +2,12 @@ package com.lt.crs.business;
 
 import com.lt.crs.dao.ProfessorDAOImpl;
 import com.lt.crs.dao.ProfessorDAOInterface;
-
+/**
+ * 
+ * @author Rohan
+ * This Class is realted Professor Operation
+ *
+ */
 public class ProfessorOperation implements ProfessorInterface{
 
 	ProfessorDAOInterface prd=null;

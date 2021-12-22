@@ -2,7 +2,12 @@ package com.lt.crs.business;
 
 import com.lt.crs.dao.AdminDAOInterface;
 import com.lt.crs.dao.AdminDAOImpl;
-
+/**
+ * 
+ * @author Diwakar
+ * This Class is Admin Opertaion
+ *
+ */
 public class AdminOperation implements AdminInterface {
 	AdminDAOInterface admin=null;
 

@@ -8,7 +8,14 @@ import com.lt.crs.business.LoginUserOperation;
 import com.lt.crs.business.StudentRegistrationInterface;
 import com.lt.crs.business.StudentRegistrationOperation;
 
-public class CRSApplication {
+/**
+ * 
+ * @author Diwakar,Sai,Rohan
+ * This Class is Related Main Menu 
+ *
+ */
+
+public class CRSMainApplication {
 	
 	
 	static Scanner sc=new Scanner(System.in);
@@ -81,7 +88,11 @@ public class CRSApplication {
 			{
 				System.exit(0);
 			}
+			break;
 			
+		default:
+			System.out.println("User Entered Wrong Choice !!! \n \t Plese use Right Choice. ");
+			break;
 		}
 			
 		}

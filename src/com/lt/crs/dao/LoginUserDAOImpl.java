@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import com.lt.crs.app.CRSAdmin;
-import com.lt.crs.app.CRSProfessor;
-import com.lt.crs.app.CRSStudent;
+import com.lt.crs.app.CRSAdminApplication;
+import com.lt.crs.app.CRSProfessorApllication;
+import com.lt.crs.app.CRSStudentApplication;
 import com.lt.crs.constants.SqlQueryConstants;
 import com.lt.crs.exceptions.UserNotFoundException;
 import com.lt.crs.utilsDB.DBUtils;
@@ -17,9 +17,9 @@ public class LoginUserDAOImpl implements LoginUserDAOInterface{
 	
 	
 	Connection con=null;
-	CRSAdmin admin=null;
-	CRSStudent student=null;
-	CRSProfessor professor=null;
+	CRSAdminApplication admin=null;
+	CRSStudentApplication student=null;
+	CRSProfessorApllication professor=null;
 	
 public void userLogin(String userId,String userPassword) throws Exception  {
 	con=DBUtils.getConnection();
@@ -45,7 +45,7 @@ public void userLogin(String userId,String userPassword) throws Exception  {
 					int studentId=rs2.getInt(1);
 					System.out.println("Hi "+rs2.getString(2)+", login successfull @"+LocalDate.now()+" and Time "+LocalTime.now());
 					
-					student=new CRSStudent();
+					student=new CRSStudentApplication();
 					student.studentMenu(studentId);
 								
 				}
@@ -91,7 +91,7 @@ public void userLogin(String userId,String userPassword) throws Exception  {
 				if(rs4.next()) {
 					int profId=rs4.getInt(1);
 					System.out.println("Hi "+rs4.getString(2)+", login successfull @"+LocalDate.now()+" and Time "+LocalTime.now());
-					professor=new CRSProfessor();
+					professor=new CRSProfessorApllication();
 					professor.profMenu(profId);
 
 							
@@ -135,7 +135,7 @@ public void userLogin(String userId,String userPassword) throws Exception  {
 					int adminId=rs6.getInt(1);
 			//new prepared statement 
 					System.out.println("Hi "+rs6.getString(2)+", login successfull @"+LocalDate.now()+" and Time "+LocalTime.now());
-					admin=new CRSAdmin();
+					admin=new CRSAdminApplication();
 					admin.adminMenu(adminId);
 				}
 				else {

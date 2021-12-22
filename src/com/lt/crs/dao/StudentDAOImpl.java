@@ -34,9 +34,10 @@ public class StudentDAOImpl implements StudentDAOInterface{
 			ResultSet rs=ps.executeQuery();
 
 			int counter=0;
+			System.out.println("\t\tCourse Id" + " \t "+"CourseName");
 			while(rs.next()) {
 				counter+=1;
-				System.out.println("Course ID\t\t"+rs.getInt(1)+"\t\t CourseName\t\t"+rs.getString(2).trim());
+				System.out.println("\t\t"+rs.getInt(1)+"\t\t\t"+rs.getString(2).trim());
 	
 			}
 			
@@ -164,12 +165,13 @@ public class StudentDAOImpl implements StudentDAOInterface{
 	ps.setInt(1,studentId);
 	ResultSet rs=ps.executeQuery();
 	int counter=0;
+	System.out.println("course ID      professor ID      student Id  ");
 	while(rs.next()){
 		counter+=1;
 		int couId=rs.getInt(1);
 		int profId=rs.getInt(2);
 		int studId=rs.getInt(3);
-		System.out.println(" 	course ID  :	"+couId+"		professor ID : 		"+profId+" 		student Id: 	"+studId);;
+		System.out.println( couId+"                " +profId +"                "+studId  );;
 		
 	}if(counter==0) {throw new com.lt.crs.exceptions.NoCourseRegisterException("No course registered yet");}
 	
@@ -198,9 +200,9 @@ public class StudentDAOImpl implements StudentDAOInterface{
 			ps.setInt(1,studentId);
 			ResultSet rs=ps.executeQuery();
 			System.out.println("Displaying report card for the student ID:  "+studentId);
-			System.out.println("\tCourse ID \tCourse Name \tMark \tGrade");
+			System.out.println("\t\tCourse ID \t\tCourse Name \tMark  Grade");
 			while(rs.next()) {
-			System.out.println("\t\t"+rs.getInt(1)+"\t\t\t"+rs.getString(2)+"\t\t\t\t"+rs.getDouble(4)+"\t\t"+rs.getString(5));
+			System.out.println("\t\t"+rs.getInt(1)+"\t\t\t"+rs.getString(2)+"\t\t"+rs.getDouble(4)+"\t"+rs.getString(5));
 			}
 			
 			

@@ -11,5 +11,8 @@ public interface SqlQueryConstants {
 	String professor_password_update="update professor set professor_password=? where professor_id=?";
 	String student_password_update="update student set student_password=? where student_id=?";
 	String student_registeration="insert into student (student_name,student_password,student_department) values (?,?,?)";
+	String student_course_check="select * from course_professor_student where student_id=? and course_id=?";
+	String get_course_cost="select course_cost from course where course_id=?";
+	String payment_details = "insert into payment (student_id,course_id,payment_status,amount) values(?,?,?,?)";
 
 }

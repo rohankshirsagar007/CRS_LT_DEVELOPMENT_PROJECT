@@ -2,7 +2,12 @@ package com.lt.crs.business;
 
 import com.lt.crs.dao.LoginUserDAOImpl;
 import com.lt.crs.exceptions.UserNotFoundException;
-
+/**
+ * 
+ * @author Diwakar
+ * This is related User Login Operations
+ *
+ */
 public class LoginUserOperation implements LoginUserInterface{
 	com.lt.crs.dao.LoginUserDAOInterface user=null;
 public void userLogin(String userId,String userPassword)  {
